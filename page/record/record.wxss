@@ -44,3 +44,10 @@
 .week{
   color:#1296db;
 }
+.low{
+  background-color: #1296db;
+  padding:4rpx 14rpx;
+  border-radius: 8rpx;
+  margin-left: 10rpx;
+  color: #fff;
+}

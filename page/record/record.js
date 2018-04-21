@@ -1,4 +1,5 @@
 // page/record/record.js
+let utils = require('../../utils/util.js')
 Page({
   /**
    * 页面的初始数据
@@ -16,6 +17,13 @@ Page({
     } else {
       userCalendar = JSON.parse(userCalendar)
     }
+    userCalendar.map((item)=>{
+      if (utils.gusLow(item.date)){
+        item.low = true
+      }else{
+        item.low = false
+      }
+    })
     this.setData({
       userCalendar: userCalendar
     })

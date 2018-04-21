@@ -24,7 +24,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const law_arr = ['2018/04/29', '2018/04/30', '2018/05/01', '2018/06/16', '2018/06/17', '2018/06/18', '2018/09/22', '2018/09/23', '2018/09/24', '2018/10/01', '2018/10/02', '2018/10/03', '2018/10/04', '2018/10/05', '2018/10/06', '2018/10/07']
+
+const gusLow = date => {
+  return law_arr.includes(date)
+}
+
 module.exports = {
   formatTime: formatTime,
-  formatDate: formatDate
+  formatDate: formatDate,
+  gusLow: gusLow
 }
