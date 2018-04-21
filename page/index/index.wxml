@@ -1,0 +1,5 @@
+<view class="calendar-container">
+  <view class="calender-time">{{nowDate}}</view>
+  <view class="calender-prev">上次签到时间：{{prev_times}}</view>
+  <button class="calender-btn" bindtap='calendar'>签到</button>
+</view>

@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "page/index/index",
+    "page/record/record"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1296db"
+  },
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "color": "#333333",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "page/index/index",
+        "text": "签到",
+        "iconPath": "images/edit.png",
+        "selectedIconPath": "images/edit-hover.png"
+      },
+      {
+        "pagePath": "page/record/record",
+        "text": "详情",
+        "iconPath": "images/calendars.png",
+        "selectedIconPath": "images/calendar-hover.png"
+      }
+    ]
+  }
+}

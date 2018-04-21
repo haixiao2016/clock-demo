@@ -1,0 +1,18 @@
+<!--page/record/record.wxml-->
+<view class="record-title">签到记录</view>
+<view class="record-list">
+  <view class="record-item" wx:if="{{userCalendar.length>0}}" wx:for="{{userCalendar}}" wx:key="{{index}}">
+    <view class="item-title">签到日期：{{item.date}}
+      <text class="title-right week" wx:if="{{item.week=='周六'||item.week=='周日'}}">{{item.week}}</text>
+      <text class="title-right" wx:else>{{item.week}}</text>
+    </view>
+    <view class="item-des">
+      <view class="des-caMo">上午：{{item.calendarM0||'未签到'}}</view>
+      <view class="des-caAf">下午：{{item.calendarAf||'未签到'}}</view>
+    </view>
+  </view>
+  <view class="record-none" wx:if="{{userCalendar.length<=0}}">
+    暂无签到数据
+  </view>
+  <button class="del" bindtap='del' wx:if="{{userCalendar.length>0}}">清除记录</button>
+</view>
