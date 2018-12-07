@@ -18,16 +18,12 @@ Page({
       userCalendar = JSON.parse(userCalendar)
     }
     userCalendar.map((item)=>{
-      if (utils.gusLow(item.date)){
-        item.low = true
-      }else{
-        item.low = false
-      }
+      item.low = utils.gusLow(item.date)
+      item.mon = utils.monLow(item.date)
     })
     this.setData({
-      userCalendar: userCalendar
+      userCalendar
     })
-    console.log(this.data.userCalendar)
   },
   del(){
     let self = this

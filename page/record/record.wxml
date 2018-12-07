@@ -4,6 +4,7 @@
   <view class="record-item" wx:if="{{userCalendar.length>0}}" wx:for="{{userCalendar}}" wx:key="{{index}}">
     <view class="item-title">签到日期：{{item.date}}
     <text class="low" wx:if="{{item.low}}">法</text>
+    <text class="low mon" wx:if="{{item.mon}}">调</text>
       <text class="title-right week" wx:if="{{item.week=='周六'||item.week=='周日'}}">{{item.week}}</text>
       <text class="title-right" wx:else>{{item.week}}</text>
     </view>
