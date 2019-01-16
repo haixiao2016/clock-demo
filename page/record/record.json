@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "签到记录"
+  "navigationBarTitleText": "签到记录",
+  "usingComponents": {
+    "slip": "/components/slip/slip"
+  }
 }

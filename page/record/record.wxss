@@ -1,3 +1,6 @@
+.page{
+  background-color: #fff;
+}
 .record-title{
   font-size: 36rpx;
   text-align: center;
@@ -13,6 +16,13 @@
 }
 .record-item{
   border-bottom:4px solid #e5e5e5;
+}
+.del-btn{
+  padding: 0 40rpx;
+  background-color: red;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 142rpx;
 }
 .item-des{
   height: 60rpx;
@@ -31,7 +41,7 @@
   background-color: #1296db;
   color: #fff;
   line-height: 80rpx;
-  margin-top: 40rpx;
+  margin: 40rpx auto;
 }
 .record-none{
   font-size: 32rpx;
