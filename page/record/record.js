@@ -6,12 +6,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userCalendar:[]
+    userCalendar:[],
+    monArr: [],
+    lawArr: []
   },
-  onShow: function (options) {
-    this.getCalendar()
+  onShow() {
+    this.getLawDay()
+  },
+  getLawDay(){
+    const _this = this
+    if(this.data.lawArr.length === 0){
+      wx.showLoading({
+        title: '获取中',
+      })
+      wx.request({
+        url: 'https://easy-mock.com/mock/5cc56f2fe949c841bdb0dd40/clock/reqGetLawDay',
+        success(res) {
+          const data = res.data || {}
+          _this.setData({
+            monArr: data.monArr,
+            lawArr: data.lawArr
+          })
+        },
+        complete(){
+          _this.getCalendar()
+        }
+      })
+    } else {
+      _this.getCalendar()
+    }
   },
   getCalendar(){
+    const { monArr,lawArr } = this.data
     let userCalendar = wx.getStorageSync('userCalendar')
     if (userCalendar == undefined || userCalendar=='') {
       userCalendar = []
@@ -19,12 +45,13 @@ Page({
       userCalendar = JSON.parse(userCalendar)
     }
     userCalendar.map((item)=>{
-      item.low = utils.gusLow(item.date)
-      item.mon = utils.monLow(item.date)
+      item.low = utils.gusLow(item.date,lawArr)
+      item.mon = utils.monLow(item.date,monArr)
     })
     this.setData({
       userCalendar
     })
+    wx.hideLoading()
     this.refresh()
   },
   del(){
