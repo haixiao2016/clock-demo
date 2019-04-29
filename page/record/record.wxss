@@ -1,6 +1,4 @@
-.page{
-  background-color: #fff;
-}
+
 .record-title{
   font-size: 36rpx;
   text-align: center;
@@ -8,14 +6,17 @@
   background-color: #1296db;
   color: #fff;
 }
+.record-list{
+  min-height: 900rpx;
+}
 .item-title{
   font-size: 32rpx;
-  line-height: 80rpx;
+  line-height: 82rpx;
   padding: 0 20rpx 0 20rpx;
-  border-bottom:1px solid #e5e5e5;
+  border-bottom:2rpx solid #e5e5e5;
 }
 .record-item{
-  border-bottom:4px solid #e5e5e5;
+  border-bottom:8rpx solid #e5e5e5;
 }
 .del-btn{
   padding: 0 40rpx;
@@ -64,4 +65,12 @@
 .low.mon{
   background-color: #fded08;
   color: black;
+}
+.notFound{
+  width: 500rpx;
+  height: 500rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }

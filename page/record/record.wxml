@@ -1,6 +1,6 @@
 <!--page/record/record.wxml-->
 <view class="record-list">
-  <view class="record-item" wx:if="{{userCalendar.length>0}}" wx:for="{{userCalendar}}" wx:key="{{index}}">
+  <view class="record-item" wx:if="{{userCalendar && userCalendar.length>0}}" wx:for="{{userCalendar}}" wx:key="{{index}}">
     <slip id="slip{{index}}" bind:opened="opend" bind:openeded="openeded" data-opend = "{{index}}">
       <view slot="slip-center">
         <view class="item-title">签到日期：{{item.date}}
@@ -19,9 +19,9 @@
       </view>
     </slip>
   </view>
-  <view class="record-none" wx:if="{{userCalendar.length<=0}}">
-    暂无签到数据
-  </view>
-  <button class="del" bindtap='del' wx:if="{{userCalendar.length>0}}">清除记录</button>
-  <view style="height: 40rpx;"></view>
 </view>
+<view class="record-none" wx:if="{{userCalendar && userCalendar.length === 0}}">
+  <image class="notFound" src="/images/not-found.png"></image>
+</view>
+<button class="del" bindtap='del' wx:if="{{userCalendar.length>0}}">清除记录</button>
+<view style="height: 40rpx;"></view>
