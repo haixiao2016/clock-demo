@@ -20,7 +20,7 @@ Page({
         title: '获取中',
       })
       wx.request({
-        url: 'https://easy-mock.com/mock/5cc56f2fe949c841bdb0dd40/clock/reqGetLawDay',
+        url: 'https://easy-mock.com/mock/5e6499658e711c50e7d330cf/clock/reqGetLawDay',
         success(res) {
           const data = res.data || {}
           _this.setData({

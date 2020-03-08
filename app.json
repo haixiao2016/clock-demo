@@ -28,5 +28,6 @@
         "selectedIconPath": "images/calendar-hover.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

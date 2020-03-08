@@ -1,4 +1,7 @@
 <view class="calendar-container">
+  <view class="adContainer">
+    <ad unit-id="adunit-bf6797aad7917f8b" ad-intervals="30"></ad>
+  </view>
   <view class="calender-time">{{nowDate}}</view>
   <view class="calender-prev">上次签到时间：{{prev_times}}</view>
   <button class="calender-btn" bindtap='calendar'>签到</button>
