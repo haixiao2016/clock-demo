@@ -3,7 +3,7 @@
   font-size: 36rpx;
   text-align: center;
   line-height: 100rpx;
-  background-color: #1296db;
+  background-color: #0078A8;
   color: #fff;
 }
 .record-list{
@@ -39,7 +39,7 @@
 .del{
   width:400rpx;
   height:80rpx;
-  background-color: #1296db;
+  background-color: #0078A8;
   color: #fff;
   line-height: 80rpx;
   margin: 40rpx auto;
@@ -53,10 +53,10 @@
   float: right;
 }
 .week{
-  color:#1296db;
+  color:#0078A8;
 }
 .low{
-  background-color: #1296db;
+  background-color: #0078A8;
   padding:4rpx 14rpx;
   border-radius: 8rpx;
   margin-left: 10rpx;

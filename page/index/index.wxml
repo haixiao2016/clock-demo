@@ -5,4 +5,5 @@
   <view class="calender-time">{{nowDate}}</view>
   <view class="calender-prev">上次签到时间：{{prev_times}}</view>
   <button class="calender-btn" bindtap='calendar'>签到</button>
+  <button class="contact" open-type="contact"></button>
 </view>
