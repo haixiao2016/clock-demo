@@ -1,7 +1,7 @@
 <!--page/record/record.wxml-->
 <view class="record-list">
+  <ad unit-id="adunit-ae5950399e392e93"></ad>
   <view class="record-item" wx:if="{{userCalendar && userCalendar.length>0}}" wx:for="{{userCalendar}}" wx:key="{{index}}">
-    <ad unit-id="adunit-ae5950399e392e93"></ad>
     <slip id="slip{{index}}" bind:opened="opend" bind:openeded="openeded" data-opend = "{{index}}">
       <view slot="slip-center">
         <view class="item-title">签到日期：{{item.date}}
