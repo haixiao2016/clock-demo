@@ -11,54 +11,32 @@ Page({
     lawArr: []
   },
   onShow() {
-    const _this = this;
-    wx.getStorage({
-      key: 'LawDay',
-      success (res) {
-        let LawDay = res.data;
-        if (LawDay == undefined || LawDay == "") {
-      
-          LawDay = {};
-        } else {
-          LawDay = JSON.parse(LawDay);
-        }
-        _this.setData({
-          monArr: LawDay.monArr || [],
-          lawArr: LawDay.lawArr || []
-        },()=> {
-          _this.getCalendar();
-        });
-      }
-    })
-  },
-  onLoad() {
     this.getPrevRefresh();
   },
   getPrevRefresh() {
-    const refreshId = wx.getStorageSync("refreshId");
     const _this = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url:
         "https://www.fastmock.site/mock/8d9c7887911b5fe831371bef61dee0c2/clock/reqGetLawDay",
       success(res) {
         const data = res.data || {};
-        if (refreshId !== data.refreshId) {
-          wx.setStorageSync("refreshId", data.refreshId);
-          wx.setStorageSync(
-            "LawDay",
-            JSON.stringify({
-              monArr: data.monArr,
-              lawArr: data.lawArr
-            })
-          );
-          _this.setData(
-            {
-              monArr: data.monArr,
-              lawArr: data.lawArr
-            },
-            () => _this.getCalendar()
-          );
-        }
+        wx.hideLoading()
+        _this.setData(
+          {
+            monArr: data.monArr,
+            lawArr: data.lawArr
+          },
+          () => _this.getCalendar()
+        );
+      },
+      fail(){
+        wx.showToast({
+          title: '加载失败，请推出重新进入此页面',
+          icon: 'none',
+        })
       }
     });
   },
