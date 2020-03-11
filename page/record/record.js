@@ -11,21 +11,25 @@ Page({
     lawArr: []
   },
   onShow() {
-    let LawDay = wx.getStorageSync("LawDay");
-    if (LawDay == undefined || LawDay == "") {
-      LawDay = {};
-    } else {
-      LawDay = JSON.parse(LawDay);
-    }
-    this.setData(
-      {
-        monArr: LawDay.monArr || [],
-        lawArr: LawDay.lawArr || []
-      },
-      () => {
-        this.getCalendar();
+    const _this = this;
+    wx.getStorage({
+      key: 'LawDay',
+      success (res) {
+        let LawDay = res.data;
+        if (LawDay == undefined || LawDay == "") {
+      
+          LawDay = {};
+        } else {
+          LawDay = JSON.parse(LawDay);
+        }
+        _this.setData({
+          monArr: LawDay.monArr || [],
+          lawArr: LawDay.lawArr || []
+        },()=> {
+          _this.getCalendar();
+        });
       }
-    );
+    })
   },
   onLoad() {
     this.getPrevRefresh();
@@ -39,15 +43,21 @@ Page({
       success(res) {
         const data = res.data || {};
         if (refreshId !== data.refreshId) {
-          wx.setStorageSync('refreshId', data.refreshId);
-          wx.setStorageSync('LawDay', JSON.stringify({
-            monArr: data.monArr,
-            lawArr: data.lawArr,
-          }));
-          _this.setData({
-            monArr: data.monArr,
-            lawArr: data.lawArr
-          },()=> _this.getCalendar());
+          wx.setStorageSync("refreshId", data.refreshId);
+          wx.setStorageSync(
+            "LawDay",
+            JSON.stringify({
+              monArr: data.monArr,
+              lawArr: data.lawArr
+            })
+          );
+          _this.setData(
+            {
+              monArr: data.monArr,
+              lawArr: data.lawArr
+            },
+            () => _this.getCalendar()
+          );
         }
       }
     });
@@ -143,6 +153,11 @@ Page({
       complete: function() {
         self.refresh();
       }
+    });
+  },
+  goNextPage() {
+    wx.navigateTo({
+      url: "/page/supplement/supplement"
     });
   }
 });

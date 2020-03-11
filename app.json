@@ -1,7 +1,8 @@
 {
   "pages": [
     "page/index/index",
-    "page/record/record"
+    "page/record/record",
+    "page/supplement/supplement"
   ],
   "window": {
     "backgroundTextStyle": "light",

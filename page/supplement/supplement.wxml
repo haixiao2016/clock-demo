@@ -1,0 +1,16 @@
+<view>
+  <!-- <text class="tips">为防止补签功能滥用和更好的维护此功能，我们会要求您看一段广告，请知悉~</text> -->
+  <scroll-view class="container">
+  <view class="scrolltxt">
+    <view class="marquee_box">
+      <view class="marquee_text" style="transform: translateX(-{{marqueeDistance}}px)">
+        <text>{{text}}</text>
+        <text style="margin-right:{{marquee_margin}}px;"></text>
+        <text style="margin-right:{{marquee_margin}}px;">{{text}}</text>        
+      </view>
+    </view>
+  </view>
+</scroll-view>
+  <button class="calender-btn" bindtap='pickerShow'>立即补签</button>
+</view>
+<time-picker pickerShow="{{isPickerShow}}" id="picker" wx:if="{{isPickerRender}}" bind:hidePicker="pickerHide" bind:setPickerTime="setPickerTime" config="{{pickerConfig}}"></time-picker>

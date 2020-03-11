@@ -1,0 +1,14 @@
+.calender-btn{
+  margin-top: 200rpx;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+  font-size: 40rpx;
+  line-height: 300rpx;
+  color: #fff;
+  background-color: #0078A8;
+}
+.container {height: 100%;display: flex;flex-direction: column;justify-content: space-between;box-sizing: border-box;}
+.scrolltxt{padding:0 25rpx;background:#fff;}
+.marquee_box {position:relative;color:#0078A8;height:90rpx;display:block;overflow:hidden;} 
+.marquee_text {white-space: nowrap;position:absolute;top:0;font-size:14px;height:90rpx;line-height:90rpx;}

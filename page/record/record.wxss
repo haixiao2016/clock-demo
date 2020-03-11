@@ -74,3 +74,19 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.contact{
+  width: 80rpx;
+  height: 80rpx;
+  position: fixed;
+  bottom: 100rpx;
+  right: 10rpx;
+  background-size: 100%;
+  border: none;
+  border-radius: 100%;
+  background: #0078A8;
+  line-height:  80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+}
