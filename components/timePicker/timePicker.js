@@ -1,4 +1,4 @@
-const date_arr = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+const date_arr = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 Component({
   /**
    * 组件的属性列表
@@ -190,12 +190,11 @@ Component({
       } else if (endDate > nowDate) {
         showText = "设置时间不能大于当前时间";
       } else {
-        
         let time = {
           calendarM0: startTime,
           calendarAf: endTime,
           date: days,
-          week: date_arr[new Date(days).getDay()],
+          week: date_arr[new Date(days).getDay()]
         };
         this.triggerEvent("setPickerTime", time);
         this.triggerEvent("hidePicker", {});
@@ -227,65 +226,21 @@ Component({
       if (type === "end") {
         val = [startValue[0], startValue[1], startValue[2], ...vals];
       }
-      console.log(val);
-      let h = val[3] ? this.data.HourList[val[3]] : "00";
+      let h = val[3]
+        ? type === "end"
+          ? this.data.endHourList[val[3]]
+          : this.data.startHourList[val[3]]
+        : type === "end"
+        ? "12"
+        : "00";
       let m = val[4] ? this.data.MinuteList[val[4]] : "00";
       let s = val[5] ? this.data.SecondList[val[5]] : "00";
-      let time =
-        this.data.YearList[val[0]] +
-        "/" +
-        this.data.MonthList[val[1]] +
-        "/" +
-        this.data.DayList[val[2]] +
-        " " +
-        h +
-        ":" +
-        m +
-        ":" +
-        s;
-
-      let start = this.data.limitStartTime;
-      let end = this.data.limitEndTime;
-      let timeNum = new Date(time.replace(/-/g, "/")).getTime();
       let year, month, day, hour, min, sec, limitDate;
-      let tempArr = [];
-
-      // if (!this.data.dateLimit){
-      //   limitDate = [
-      //     this.data.YearList[val[0]],
-      //     this.data.MonthList[val[1]],
-      //     this.data.DayList[val[2]],
-      //     this.data.HourList[val[3]],
-      //     this.data.MinuteList[val[4]],
-      //     this.data.SecondList[val[5]]]
-      // } else if (type == "start" && timeNum > new Date(this.data.endPickTime.replace(/-/g, '/')) && this.data.config.endDate) {
-      //   limitDate = formatTime(this.data.endPickTime).arr;
-
-      // } else if (type == "end" && timeNum < new Date(this.data.startPickTime.replace(/-/g, '/'))) {
-      //   limitDate = formatTime(this.data.startPickTime).arr;
-
-      // } else if (timeNum < start) {
-      //   limitDate = this.data.limitStartTimeArr.arr;
-
-      // } else if (timeNum > end) {
-      //   limitDate = this.data.limitEndTimeArr.arr;
-
-      // } else {
-      //   limitDate = [
-      //     this.data.YearList[val[0]],
-      //   this.data.MonthList[val[1]],
-      //   this.data.DayList[val[2]],
-      //   this.data.HourList[val[3]],
-      //   this.data.MinuteList[val[4]],
-      //  this.data.SecondList[val[5]]
-      //   ]
-
-      // }
       limitDate = [
         this.data.YearList[val[0]],
         this.data.MonthList[val[1]],
         this.data.DayList[val[2]],
-        this.data.HourList[val[3]],
+        h,
         this.data.MinuteList[val[4]],
         this.data.SecondList[val[5]]
       ];
@@ -340,7 +295,8 @@ Component({
       let YearList = [];
       let MonthList = [];
       let DayList = [];
-      let HourList = [];
+      let startHourList = [];
+      let endHourList = [];
       let MinuteList = [];
       let SecondList = [];
 
@@ -358,11 +314,14 @@ Component({
         DayList.push(i);
       }
       // 设置时列表
-      for (let i = 0; i <= 23; i++) {
+      for (let i = 0; i <= 11; i++) {
         if (0 <= i && i < 10) {
           i = "0" + i;
         }
-        HourList.push(i);
+        startHourList.push(i);
+      }
+      for (let i = 12; i <= 23; i++) {
+        endHourList.push(i);
       }
       // 分|秒
       for (let i = 0; i <= 59; i++) {
@@ -377,7 +336,8 @@ Component({
         YearList,
         MonthList,
         DayList,
-        HourList,
+        endHourList,
+        startHourList,
         MinuteList,
         SecondList
       });
@@ -391,12 +351,6 @@ Component({
         startSecond
       );
       this.setEndDate(endYear, endMonth, endDay, endHour, endMinute, endSecond);
-
-      //!!!
-      // setTimeout(() => {
-      //   this.setStartDate(nowYear, nowMonth, nowDay, nowHour, nowMinute)
-      //   this.setEndDate(nowYear, nowMonth, nowDay, nowHour, nowMinute)
-      // }, 0);
     },
     setPickerDateArr(type, year, month, day, hour, minute, second) {
       let yearIdx = 0;
@@ -430,15 +384,19 @@ Component({
       });
       if (type == "start") {
         this.setData({ startDayList: DayList });
+        this.data.startHourList.map((v, idx) => {
+          if (parseInt(v) === parseInt(hour)) {
+            hourIdx = idx;
+          }
+        });
       } else if (type == "end") {
         this.setData({ endDayList: DayList });
+        this.data.endHourList.map((v, idx) => {
+          if (parseInt(v) === parseInt(hour)) {
+            hourIdx = idx;
+          }
+        });
       }
-
-      this.data.HourList.map((v, idx) => {
-        if (parseInt(v) === parseInt(hour)) {
-          hourIdx = idx;
-        }
-      });
 
       this.data.MinuteList.map((v, idx) => {
         if (parseInt(v) === parseInt(minute)) {
@@ -473,8 +431,8 @@ Component({
       this.setData({
         startYearList: this.data.YearList,
         startMonthList: this.data.MonthList,
-        // startDayList: this.data.DayList,
-        startHourList: this.data.HourList,
+        startHourList: this.data.startHourList,
+        endHourList: this.data.endHourList,
         startMinuteList: this.data.MinuteList,
         startSecondList: this.data.SecondList,
         startValue: [
@@ -492,7 +450,7 @@ Component({
           "/" +
           this.data.DayList[pickerDateArr.dayIdx] +
           " " +
-          this.data.HourList[pickerDateArr.hourIdx] +
+          this.data.startHourList[pickerDateArr.hourIdx] +
           ":" +
           this.data.MinuteList[pickerDateArr.minuteIdx] +
           ":" +
@@ -509,11 +467,15 @@ Component({
         minute,
         second
       );
+      let endHourList = [];
+      for (let i = 12; i <= 23; i++) {
+        endHourList.push(i);
+      }
       this.setData({
         endYearList: this.data.YearList,
         endMonthList: this.data.MonthList,
         endDayList: this.data.DayList,
-        endHourList: this.data.HourList,
+        endHourList: endHourList,
         endMinuteList: this.data.MinuteList,
         endSecondList: this.data.SecondList,
         endPickTime:
@@ -523,7 +485,7 @@ Component({
           "/" +
           this.data.DayList[pickerDateArr.dayIdx] +
           " " +
-          this.data.HourList[pickerDateArr.hourIdx] +
+          this.data.endHourList[pickerDateArr.hourIdx] +
           ":" +
           this.data.MinuteList[pickerDateArr.minuteIdx] +
           ":" +

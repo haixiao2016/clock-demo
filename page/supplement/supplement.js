@@ -1,4 +1,6 @@
 let rewardedVideoAd = null;
+const utils = require("../../utils/util.js");
+const yDay = utils.formatDate(new Date(new Date() - 1000 * 3600 * 24));
 Page({
   data: {
     isPickerRender: false,
@@ -7,8 +9,8 @@ Page({
       endDate: true,
       column: "second",
       dateLimit: true,
-      initStartTime: "2020-01-01 00:00:00",
-      initEndTime: "2020-01-01 00:00:00",
+      initStartTime: `${yDay} 00:00:00`,
+      initEndTime: `${yDay} 12:00:00`,
       yearStart: "2019",
       yearEnd: new Date().getFullYear()
     },
@@ -84,6 +86,7 @@ Page({
     });
   },
   setPickerTime: function(val) {
+    console.log(val.detail);
     wx.showModal({
       title: "温馨提示",
       content: "您需要看一段广告才能补签完成，是否继续",
