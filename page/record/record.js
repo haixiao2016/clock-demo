@@ -10,20 +10,22 @@ Page({
     monArr: [],
     lawArr: []
   },
-  onShow() {
+  onLoad() {
     this.getPrevRefresh();
+  },
+  onShow() {
+    this.getCalendar();
   },
   getPrevRefresh() {
     const _this = this;
     wx.showLoading({
-      title: '加载中',
-    })
+      title: "加载中"
+    });
     wx.request({
       url:
         "https://www.fastmock.site/mock/8d9c7887911b5fe831371bef61dee0c2/clock/reqGetLawDay",
       success(res) {
         const data = res.data || {};
-        wx.hideLoading()
         _this.setData(
           {
             monArr: data.monArr,
@@ -32,11 +34,8 @@ Page({
           () => _this.getCalendar()
         );
       },
-      fail(){
-        wx.showToast({
-          title: '加载失败，请推出重新进入此页面',
-          icon: 'none',
-        })
+      complete() {
+        wx.hideLoading();
       }
     });
   },
